@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/style.css">
+        
+    <title>Lista De Tarefa</title>
+</head>
+<body>
+    <header class="top">
+        <div class="titulo">
+            <h2>Lista De Tarefas</h2>
+        </div>
+    </header>
+
+    <main class="main">
+
+        <section class="input">
+            <div class="card">
+                <div class="title">
+                    <h3>Tarefa:</h3>
+                </div>
+                <div class="lineInput">
+                    <input class="tarefa" type="text" id="tarefa" placeholder="Adicione a tarefa">
+                    <button class="btnAdicionar" onclick="salvar()" id="btnAdicionar">Adicionar</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="table">
+            <div class="content">
+                <table border="1">
+                    <thead>
+                        <th class="center">Id</th>
+                        <th class="center">Tarefa</th>
+                        <th class="center">Status</th>
+                        <th class="center">Atualizar status</th>
+                        <th class="center">Deleta tarefa?</th>
+                    </thead>
+                    <tbody class="tBody" id="tBody">
+                        <% tarefas.forEach(tarefa => { %>
+                            <tr>
+                                <td><%= tarefa.id %></td>
+                                <td><%= tarefa.tarefaNome %></td>
+                                <td><%= tarefa.status %></td>
+                                <td>
+                                    <button onclick="<%= 'alterarStatus(1,' + tarefa.id + ')' %>">Iniciar</button>
+                                    <button onclick="<%= 'alterarStatus(2,' + tarefa.id + ')' %>">Pausar</button>
+                                    <button onclick="<%= 'alterarStatus(3,' + tarefa.id + ')' %>">Finalizado</button>
+                                </td>
+                                <td><button onclick="<%= 'deletarTarefa(' + tarefa.id + ')' %>">Deletar</button></td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+
+            </div>
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="/main.js"></script> 
+</body> 
+</html> 
