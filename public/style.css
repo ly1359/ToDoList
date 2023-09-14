@@ -10,10 +10,59 @@ body{
 }
 
 :root{
-    --cor1: #A52A2A;
-    --cor2: #BC8F8F;
+    --cor1: #496e4e;
+    --cor2: #4b8480;
+    --corContrast: #A52A2A;
+
 }
 
+.bodyLogin {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.loginSection {
+    width: 1000px;
+    height: 600px;
+    background-image: url(./img/todolist.jpg);
+    background-size: 900px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+.loginSection form {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* margin: 0; */
+}
+
+
+label {
+    font-weight: bold;
+    display: block;
+    margin: 20px;
+}
+
+input[type="text"], input[type="password"] {
+    width: 70%;
+    height: 40px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+input[type="submit"]{
+    margin-top: 20px;
+}
 
 .top{
     background-color: var(--cor1);
@@ -57,19 +106,21 @@ body{
 }
 
 button{
+    width: 100px;
     border: 0;
     margin: 10px 0px;
     padding: 10px;
     outline: 0;;
     background-color: var(--cor1);
-    color: var(--cor2);
+    color: var(--corContrast);
     border-radius: 3px;
     font-weight: bold;
     transition: all easee 0.3s;
 }
 
 button:hover{
-    background-color: rgb(81, 19, 139);
+    background-color:var(--corContrast);
+    color: var(--cor2);
 }
 
 

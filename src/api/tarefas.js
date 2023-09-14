@@ -2,15 +2,19 @@ const express = require('express')
 const router = express.Router()
 const { tarefa } = require('../models')
 
-router.get('/', async (req, res) => {
-    const tarefas = await tarefa.findAll();
+router.get('/tarefas', async (req, res) => {
+    const usuarioId = req.session.usuarioId;
+   
+    const tarefas = await tarefa.findAll({ where: { usuarioId } });
+    res.render('tarefas', { tarefas }
+    );
     res.render('tarefas', { tarefas });
 }) 
 
 router.post('/adiciona', async (req, res) => {
     try{ 
-
-        const { tarefaNome, status, usuarioId } = req.body;
+        const usuarioId = req.session.usuarioId;
+        const { tarefaNome, status } = req.body;
         await tarefa.create({ tarefaNome, status, usuarioId });
         res.send('Tarefa adicionada');
     }catch (erro){
@@ -21,14 +25,16 @@ router.post('/adiciona', async (req, res) => {
 
 router.put('/altera-status/:id', async (req, res) => {
     const id = req.params.id;
+    const usuarioId = req.session.usuarioId;
     const { status } = req.body;
-    await tarefa.update({ status }, { where: { id } });
+    await tarefa.update({ status }, { where: { id, usuarioId } });
     res.json({ message: 'Tarefa Atualizada' });
 });
 
 router.delete('/delete-tarefa/:id', async (req, res) => {
     const id = req.params.id;
-    await tarefa.destroy({ where: { id }});
+    const usuarioId = req.session.usuarioId;
+    await tarefa.destroy({ where: { id, usuarioId }});
     res.json({ message: 'Tarefa removida'});
 })
 
