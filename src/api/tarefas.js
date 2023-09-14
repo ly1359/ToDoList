@@ -10,8 +10,8 @@ router.get('/', async (req, res) => {
 router.post('/adiciona', async (req, res) => {
     try{ 
 
-        const { tarefaNome, status } = req.body;
-        await tarefa.create({ tarefaNome, status });
+        const { tarefaNome, status, usuarioId } = req.body;
+        await tarefa.create({ tarefaNome, status, usuarioId });
         res.send('Tarefa adicionada');
     }catch (erro){
         console.log(erro);

@@ -13,7 +13,13 @@ const tarefa = (sequelize, DataType) => {
         }
     }, {
         tableName: 'tarefa'
-    })
+    });
+    Tarefa.associate = function(models) {
+        Tarefa.belongsTo(models.Usuario, {
+            foreignKey:'usuarioId',
+            as : "usuario"
+        });
+    };
 
     return Tarefa
 }
